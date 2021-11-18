@@ -19,7 +19,6 @@ import com.minhalojadegames.minhalojadegames.repository.CategoriaRepository;
 
 @RestController
 @RequestMapping("/categorias")
-
 public class CategoriaController {
 	
 	@Autowired

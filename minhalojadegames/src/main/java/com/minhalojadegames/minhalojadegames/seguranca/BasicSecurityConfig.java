@@ -10,16 +10,15 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 @EnableWebSecurity
 public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	private @Autowired UserDetailsServiceImpl service;
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
-
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);
-	}
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -36,6 +35,17 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and().cors()
 				.and().csrf().disable();
+
+	}
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+		
+		auth.userDetailsService(service);
+		
+		auth.inMemoryAuthentication().withUser("boaz").password(passwordEncoder().encode("boaz"))
+		.authorities("ROLE_ADMIN");
+
 
 	}
 
