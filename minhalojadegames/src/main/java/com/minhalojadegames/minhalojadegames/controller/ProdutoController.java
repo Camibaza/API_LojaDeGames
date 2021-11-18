@@ -19,7 +19,6 @@ import com.minhalojadegames.minhalojadegames.repository.ProdutoRepository;
 
 @RestController
 @RequestMapping("/produto")
-
 public class ProdutoController {
 
 	@Autowired
