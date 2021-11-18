@@ -24,7 +24,7 @@ public class SwaggerConfig {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
 				.apis(RequestHandlerSelectors
-				.basePackage("br.org.generation.api_lojagames.controller"))
+				.basePackage("com.minhalojadegames.minhalojadegames.controller"))
 				.paths(PathSelectors.any())
 				.build()
 				.apiInfo(metadata())
